@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    sono home
+    sono index
 @endsection
