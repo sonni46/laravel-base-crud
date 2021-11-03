@@ -51,7 +51,8 @@ class ComicController extends Controller
         // altro metodo di inserimento nel database atraverso il model 
         
         $new_comic->fill($data_comic);
-        return redirect()->route('comics.show' , $new_comic->id);
+        $new_comic->save();
+        return redirect()->route('comics.show', $new_comic->id);
     }
 
     /**
@@ -71,9 +72,9 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comic $comic)
     {
-        //
+        return  view('comics.edit', compact('comic'));
     }
 
     /**
@@ -83,9 +84,11 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        $data_update_comic = $request->all();
+        $comic->update($data_update_comic);
+        return redirect()->route('comics.show', $comic->id);
     }
 
     /**
