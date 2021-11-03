@@ -21,8 +21,12 @@
                         <td>{{$comic['price']}} €</td>
                         <td>
                             <a href="{{route('comics.show', $comic['id'])}}" class="btn btn-info">Details</a>
-                            <a href="{{route('comics.edit', $comic['id'])}}" class="btn btn-warning">Details</a>
-                            <a href="{{route('comics.show', $comic['id'])}}" class="btn btn-danger">Details</a>
+                            <a href="{{route('comics.edit', $comic['id'])}}" class="btn btn-warning">Modyfy</a>
+                            <form action="{{route('comics.destroy', $comic['id'])}}" method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     
