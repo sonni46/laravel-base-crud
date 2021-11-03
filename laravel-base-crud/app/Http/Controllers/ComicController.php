@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comic;
+use Illuminate\Support\Facades\Redirect;
 
 class ComicController extends Controller
 {
@@ -25,7 +26,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**
@@ -36,7 +37,21 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data_comic = $request->all();
+        $new_comic = new Comic;
+        // $new_comic->title = $data_comic['title'];
+        // $new_comic->description = $data_comic['description'];
+        // $new_comic->thumb = $data_comic['thumb'];
+        // $new_comic->price = $data_comic['price'];
+        // $new_comic->series = $data_comic['series'];
+        // $new_comic->sale_date = $data_comic['sale_date'];
+        // $new_comic->type = $data_comic['type'];
+        // $new_comic->save();
+
+        // altro metodo di inserimento nel database atraverso il model 
+        
+        $new_comic->fill($data_comic);
+        return redirect()->route('comics.show' , $new_comic->id);
     }
 
     /**
